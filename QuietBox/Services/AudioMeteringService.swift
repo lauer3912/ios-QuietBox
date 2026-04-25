@@ -79,11 +79,11 @@ class AudioMeteringService: ObservableObject {
         let channelDataValueArray = stride(from: 0, to: Int(buffer.frameLength), by: buffer.stride).map { channelDataValue[$0] }
 
         // Calculate RMS
-        let rms = sqrt(channelDataValueArray.map { $0 * $0 }.reduce(0, +) / Float(buffer.frameLength))
+        let rms = sqrt(Double(channelDataValueArray.map { $0 * $0 }.reduce(0, +)) / Double(buffer.frameLength))
 
         // Convert to dB
         let db = 20 * log10(rms)
-        let normalizedDb = max(0, min(120, db + 100)) // Normalize to 0-120 range
+        let normalizedDb = max(0.0, min(120.0, db + 100.0)) // Normalize to 0-120 range
 
         DispatchQueue.main.async {
             self.currentDb = normalizedDb
