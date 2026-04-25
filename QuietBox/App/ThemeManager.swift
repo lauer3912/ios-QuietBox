@@ -33,13 +33,13 @@ struct ThemeManager {
     // MARK: - Level Color
     static func color(for db: Double, threshold: Double) -> Color {
         if db < threshold * 0.7 {
-            return levelQuiet
+            return Colors.levelQuiet
         } else if db < threshold {
-            return levelModerate
+            return Colors.levelModerate
         } else if db < threshold * 1.2 {
-            return levelLoud
+            return Colors.levelLoud
         } else {
-            return levelVeryLoud
+            return Colors.levelVeryLoud
         }
     }
 
